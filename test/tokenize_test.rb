@@ -14,13 +14,14 @@ class TokenizeTest < ActiveSupport::TestCase
   end
 
   test 'an error is thrown if the specified relation does not exist' do
-    assert_raise UntokenizableAssocationError do
+    assert_raise TrivialTokens::Tokenize::UntokenizableAssocationError do
       Article.tokenize :foo_diddly
     end
   end
 
   test 'an error is thrown if the specified relation is not has_many, or habtm' do 
-    assert_raise UntokenizableAssociationError do
+    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
+    debugger
       Article.tokenize :author
     end
   end
