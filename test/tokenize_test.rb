@@ -14,7 +14,7 @@ class TokenizeTest < ActiveSupport::TestCase
   end
 
   test 'an error is thrown if the specified relation does not exist' do
-    assert_raise TrivialTokens::Tokenize::UntokenizableAssocationError do
+    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
       Article.tokenize :foo_diddly
     end
   end
@@ -34,7 +34,6 @@ class TokenizeTest < ActiveSupport::TestCase
     article.tags << tag_1
     article.tags << tag_2
 
-    debugger
     assert_equal "#{tag_1.id},#{tag_2.id}", article.tokenized_tags
   end
 
