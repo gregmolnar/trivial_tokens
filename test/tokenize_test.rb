@@ -21,7 +21,6 @@ class TokenizeTest < ActiveSupport::TestCase
 
   test 'an error is thrown if the specified relation is not has_many, or habtm' do 
     assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
-    debugger
       Article.tokenize :author
     end
   end
@@ -29,19 +28,20 @@ class TokenizeTest < ActiveSupport::TestCase
   #test generated instance methods
   test 'tokenized_relation generated method returns comma delimited string of ids' do
     article = Article.new
-    tag_1 = Tag.new
-    tag_2 = Tag.new
+    tag_1 = Tag.create
+    tag_2 = Tag.create
 
     article.tags << tag_1
     article.tags << tag_2
 
+    debugger
     assert_equal "#{tag_1.id},#{tag_2.id}", article.tokenized_tags
   end
 
   test 'tokenized_relation= generated method allows assignment from comma delimited string of ids' do 
     article = Article.new
-    tag_1 = Tag.new
-    tag_2 = Tag.new
+    tag_1 = Tag.create
+    tag_2 = Tag.create
 
     article.tokenized_tags = "#{tag_1.id},#{tag_2.id}"
     

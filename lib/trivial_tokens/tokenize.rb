@@ -1,7 +1,7 @@
+require_relative 'exceptions.rb'
+
 module TrivialTokens
   module Tokenize
-
-    class UntokenizableAssociationError < StandardError; end
 
     extend ActiveSupport::Concern
 
@@ -22,11 +22,11 @@ module TrivialTokens
 
         #relation is a symbol representing the relation to be tokenized
         self.send( :define_method, "tokenized_#{relation.to_s}" ) do 
-          self.send(relation).to_a.join(',')
+          self.send("#{relation.to_s.singularize}_ids").join(',')
         end
 
         self.send( :define_method, "tokenized_#{relation.to_s}=" ) do |tokens|
-          self.send("#{relation}=", tokens.split(',').map(&:to_i))
+          self.send("#{relation.to_s.singularize}_ids=", tokens.split(','))
         end
       end
     end
