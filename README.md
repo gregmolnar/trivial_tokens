@@ -1,10 +1,10 @@
-h1.trivial-tokens
-
+trivial-tokens
+==============
 This gem provides a simple wrapper for the jquery tokenInput plugin. 
 
 It is built using the asset-gem jquery-tokkeninput-rails for provision of the CSS and JS for tokenInput. 
 
-The gem provides:
+The gem will provide:
 
 A class method 'tokenize' on ActiveRecord models, which takes the name of a relation on the model as argument. This method adds getter/setter methods for the 'tokenized' form of the relation - ie, a comma delimited string of IDs.
 
