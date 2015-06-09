@@ -21,6 +21,8 @@ class TokenizeTest < ActiveSupport::TestCase
 
   test 'an error is thrown if the specified relation is not has_many, or habtm' do 
     assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
+      #TODO: define author has_one association, test error message as well as raise
+      #this passes because the same error is thrown for missing and incorrect assocs
       Article.tokenize :author
     end
   end
