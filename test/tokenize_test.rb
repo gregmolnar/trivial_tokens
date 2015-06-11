@@ -14,7 +14,7 @@ class TokenizeTest < ActiveSupport::TestCase
   end
 
   test 'an error is thrown if the specified relation does not exist' do
-    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
+    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError, 'Association foo_diddly not found!' do
       Article.tokenize :foo_diddly
     end
   end
