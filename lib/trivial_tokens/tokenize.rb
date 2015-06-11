@@ -17,7 +17,7 @@ module TrivialTokens
           raise TrivialTokens::Tokenize::UntokenizableAssociationError, "Association #{relation} not found!"
         elsif !(reflection.macro == :has_many || reflection.macro == :has_and_belongs_to_many)
           raise TrivialTokens::Tokenize::UntokenizableAssociationError,
-                "Expected assocation #{relation} to be of has_many or has_and_belongs_to_many, was #{reflection.macro}"
+                "Expected association #{relation} to be of has_many or has_and_belongs_to_many, was #{reflection.macro}"
         end
 
         #relation is a symbol representing the relation to be tokenized
