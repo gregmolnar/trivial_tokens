@@ -11,16 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607181355) do
+ActiveRecord::Schema.define(version: 20150611081209) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "body"
+    t.string "author_id"
   end
 
   create_table "articles_tags", force: :cascade do |t|
     t.integer "article_id"
     t.integer "tag_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "tags", force: :cascade do |t|
