@@ -14,13 +14,14 @@ class TokenizeTest < ActiveSupport::TestCase
   end
 
   test 'an error is thrown if the specified relation does not exist' do
-    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError, 'Association foo_diddly not found!' do
+    err = assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do 
       Article.tokenize :foo_diddly
     end
+    assert_equal 'Association foo_diddly not found!', err.message 
   end
 
   test 'an error is thrown if the specified relation is not has_many, or habtm' do 
-    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
+    assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError, 'Expected association author to be of has_many or has_and_belongs_to_many, was foo' do
       #TODO: define author has_one association, test error message as well as raise
       #this passes because the same error is thrown for missing and incorrect assocs
       Article.tokenize :author
