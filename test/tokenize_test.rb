@@ -14,15 +14,15 @@ class TokenizeTest < ActiveSupport::TestCase
   end
 
   test 'an error is thrown if the specified relation does not exist' do
-    err = assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do 
+    err = assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
       Article.tokenize :foo_diddly
     end
 
-    assert_equal 'Association foo_diddly not found!', err.message 
+    assert_equal 'Association foo_diddly not found!', err.message
   end
 
-  test 'an error is thrown if the specified relation is not has_many, or habtm' do 
-    err = assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do 
+  test 'an error is thrown if the specified relation is not has_many, or habtm' do
+    err = assert_raise TrivialTokens::Tokenize::UntokenizableAssociationError do
       Article.tokenize :author
     end
 
@@ -42,13 +42,13 @@ class TokenizeTest < ActiveSupport::TestCase
     assert_equal "#{tag_1.id},#{tag_2.id}", article.tokenized_tags
   end
 
-  test 'tokenized_relation= generated method allows assignment from comma delimited string of ids' do 
+  test 'tokenized_relation= generated method allows assignment from comma delimited string of ids' do
     article = Article.new
     tag_1 = Tag.create
     tag_2 = Tag.create
 
     article.tokenized_tags = "#{tag_1.id},#{tag_2.id}"
-    
+
     assert_equal [tag_1, tag_2], article.tags
   end
 end
