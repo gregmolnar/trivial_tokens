@@ -56,7 +56,29 @@ class TagsController < ApplicationController
   #...
 end
 
-Finally, to generate the minimum javascript required for the jquery tokenInput functionality, run the token_input generator. This generator takes the model and its association as arguments:
+Next, in application.js, require tokenInput:
+
+```js
+//= require jquery.tokeninput
+```
+
+And in application.css:
+
+```css
+*= require token-input
+```
+or
+```css
+*= require token-input-facebook
+```
+or
+```css 
+*= require token-input-mac
+```
+depending on your needs.
+
+
+To generate the minimum javascript required for the jquery tokenInput functionality, run the token_input generator. This generator takes the model and its association as arguments:
 
 ```sh
 $ rails generate trivial_tokens:token_input article tag
@@ -78,3 +100,5 @@ So go ahead and add a tokenized_tags field to your form view:
 </div>
 <!-- ... --> 
 ```
+
+that's it!
