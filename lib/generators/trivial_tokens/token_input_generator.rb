@@ -2,13 +2,24 @@
 module TrivialTokens
   module Generators
     class TokenInputGenerator < Rails::Generators::Base
-    desc 'hayyyy'
+      desc 'Generate tokenInput javascript file'
+      source_root File.expand_path('../templates', __FILE__)
+      argument :model, type: :string
+      argument :field, type: :string
 
       def create_tokeninput_file
-      
-      token_field = "MODEL_FIELD"
-      create_file "app/assets/javascripts/tokenize_#{token_field}.js", "LA LA MODEL FIELD"
+        copy_file 'tokenize_model_field.js',
+                  "app/assets/javascripts/#{tokenize_model_field}.js"
       end
+
+      def model_tokenized_field
+        "#{model}_tokenized_#{field}"
+      end
+
+      def tokenize_model_field
+        "tokenize_#{model}_#{field}"
+      end
+
     end
   end
 end
