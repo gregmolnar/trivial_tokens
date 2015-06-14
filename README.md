@@ -55,6 +55,7 @@ class TagsController < ApplicationController
   tokenize
   #...
 end
+```
 
 Next, in application.js, require tokenInput:
 
