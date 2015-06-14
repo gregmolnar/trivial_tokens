@@ -8,10 +8,8 @@ module TrivialTokens
 
     module ClassMethods
       def tokenize
-
-        self.send( :define_method, "token_query" ) do
+        self.send( :define_method, "token_query" ) do |&block|
           if self.token_params[:q].present?
-            debugger
             model = self.controller_name.classify.constantize
             instance_variable_set(
               "@#{self.controller_name}",
@@ -21,10 +19,12 @@ module TrivialTokens
               format.json { render json: self.instance_variable_get("@#{self.controller_name}")}
             end
           else
-            yield
+            block.call
           end
 
         end
+
+        private :token_query
 
         self.send( :define_method, "token_params" ) do
           self.params.permit(:q)
