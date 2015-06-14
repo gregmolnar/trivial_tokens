@@ -8,16 +8,20 @@ module TrivialTokens
       argument :field, type: :string
 
       def create_tokeninput_file
-        copy_file 'tokenize_model_field.js',
+        template 'tokenize_model_field.js',
                   "app/assets/javascripts/#{tokenize_model_field}.js"
       end
 
       def model_tokenized_field
-        "#{model}_tokenized_#{field}"
+        "#{model}_tokenized_#{tokens_index}"
       end
 
       def tokenize_model_field
-        "tokenize_#{model}_#{field}"
+        "tokenize_#{model}_#{tokens_index}"
+      end
+
+      def tokens_index
+        field.pluralize
       end
 
     end
